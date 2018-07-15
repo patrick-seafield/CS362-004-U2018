@@ -40,9 +40,30 @@ all: playdom player
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 
-unittestresults: dominion.o cardEffect.o rngs.o cardtest1.c cardtest2.c cardtest3.c cardtest4.c 
+unittestresults: dominion.o cardEffect.o rngs.o unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c 
 	echo "Running (seafielp) Assignment 03 unit tests for Dominion:" > unittestresults.out
+
+	echo "Running tests for unittest1.c" >> unittestresults.out
+	gcc -o unittest1 unittest1.c dominion.o cardEffect.o rngs.o $(CFLAGS)
+	./unittest1 >> unittestresults.out
+	gcov unittest1.c >> unittestresults.out
+
+	echo "Running tests for unittest2.c" >> unittestresults.out
+	gcc -o unittest2 unittest2.c dominion.o cardEffect.o rngs.o $(CFLAGS)
+	./unittest2 >> unittestresults.out
+	gcov unittest2.c >> unittestresults.out
+
+	echo "Running tests for unittest3.c" >> unittestresults.out
+	gcc -o unittest3 unittest3.c dominion.o cardEffect.o rngs.o $(CFLAGS)
+	./unittest3 >> unittestresults.out
+	gcov unittest3.c >> unittestresults.out
+
+	echo "Running tests for unittest4.c" >> unittestresults.out
+	gcc -o unittest4 unittest4.c dominion.o cardEffect.o rngs.o $(CFLAGS)
+	./unittest4 >> unittestresults.out
+	gcov unittest4.c >> unittestresults.out
 
 	echo "Running tests for cardtest1.c" >> unittestresults.out
 	gcc -o cardtest1 cardtest1.c dominion.o cardEffect.o rngs.o $(CFLAGS)
