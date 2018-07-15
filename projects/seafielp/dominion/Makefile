@@ -40,3 +40,28 @@ all: playdom player
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+
+unittestresults: dominion.o cardEffect.o rngs.o cardtest1.c cardtest2.c cardtest3.c cardtest4.c 
+	echo "Running (seafielp) Assignment 03 unit tests for Dominion:" > unittestresults.out
+
+	echo "Running tests for cardtest1.c" >> unittestresults.out
+	gcc -o cardtest1 cardtest1.c dominion.o cardEffect.o rngs.o $(CFLAGS)
+	./cardtest1 >> unittestresults.out
+	gcov cardtest1.c >> unittestresults.out
+
+	echo "Running tests for cardtest2.c" >> unittestresults.out
+	gcc -o cardtest2 cardtest2.c dominion.o cardEffect.o rngs.o $(CFLAGS)
+	./cardtest2 >> unittestresults.out
+	gcov cardtest2.c >> unittestresults.out
+
+	echo "Running tests for cardtest3.c" >> unittestresults.out
+	gcc -o cardtest3 cardtest3.c dominion.o cardEffect.o rngs.o $(CFLAGS)
+	./cardtest3 >> unittestresults.out
+	gcov cardtest3.c >> unittestresults.out
+
+	echo "Running tests for cardtest4.c" >> unittestresults.out
+	gcc -o cardtest4 cardtest4.c dominion.o cardEffect.o rngs.o $(CFLAGS)
+	./cardtest4 >> unittestresults.out
+	gcov cardtest4.c >> unittestresults.out
+
+

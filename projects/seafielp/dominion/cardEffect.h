@@ -5,7 +5,7 @@
 
 int ce_adventurer(struct gameState * state);
 
-int ce_smithy(struct gameState * state, int handPos);
+int ce_smithy(struct gameState * state);
 
 int ce_council_room(struct gameState * state, int handPos);
 
